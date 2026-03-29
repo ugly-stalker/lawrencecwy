@@ -160,7 +160,7 @@ export default function App() {
         {!hasStartedChat ? (
           <motion.div
             key="landing"
-            className="flex-1 flex flex-col items-center px-4 pb-8 pt-16 sm:pt-20 overflow-y-auto"
+            className="flex-1 flex flex-col items-center px-4 pb-8 pt-16 sm:pt-20 overflow-y-auto overflow-x-hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
