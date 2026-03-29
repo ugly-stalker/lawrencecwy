@@ -271,7 +271,7 @@ export default function App() {
                     showPreChat={showPreChat}
                     onPreChatSubmit={handlePreChatSubmit}
                   />
-                  <TagQuestions onTagClick={handleTagClick} isLimitReached={isLimitReached} />
+                  <TagQuestions onTagClick={handleTagClick} isLimitReached={isLimitReached} collapsible />
                 </div>
               </div>
             </main>

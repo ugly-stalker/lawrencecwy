@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronDown } from 'lucide-react';
 
 interface TagQuestionsProps {
   onTagClick: (question: string) => void;
   isLimitReached: boolean;
+  collapsible?: boolean;
 }
 
 const tags = [
@@ -20,7 +20,7 @@ const tags = [
   { emoji: '🍜', text: 'What does someone from HK actually eat?' },
 ];
 
-export function TagQuestions({ onTagClick, isLimitReached }: TagQuestionsProps) {
+export function TagQuestions({ onTagClick, isLimitReached, collapsible = false }: TagQuestionsProps) {
   const [expanded, setExpanded] = useState(false);
 
   if (isLimitReached) {
@@ -50,36 +50,44 @@ export function TagQuestions({ onTagClick, isLimitReached }: TagQuestionsProps) 
 
   const tagClass = "px-3 py-1.5 bg-primary/5 backdrop-blur-sm border border-primary/40 text-primary rounded-full text-xs font-mono hover:bg-primary/15 transition-colors flex items-center gap-1.5 shadow-md shadow-primary/5";
 
+  if (!collapsible) {
+    return (
+      <div className="space-y-2">
+        <div className="flex flex-wrap gap-2 justify-center">
+          {tags.slice(0, 5).map((tag, index) => (
+            <motion.button key={index} onClick={() => onTagClick(tag.text)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className={tagClass}>
+              <span className="text-sm">{tag.emoji}</span>
+              <span>{tag.text}</span>
+            </motion.button>
+          ))}
+        </div>
+        <div className="flex flex-wrap gap-2 justify-center">
+          {tags.slice(5).map((tag, index) => (
+            <motion.button key={index} onClick={() => onTagClick(tag.text)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className={tagClass}>
+              <span className="text-sm">{tag.emoji}</span>
+              <span>{tag.text}</span>
+            </motion.button>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-2">
       <div className="flex flex-wrap gap-2 justify-center">
-        {tags.slice(0, 5).map((tag, index) => (
-          <motion.button
-            key={index}
-            onClick={() => onTagClick(tag.text)}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className={tagClass}
-          >
+        {tags.slice(0, 2).map((tag, index) => (
+          <motion.button key={index} onClick={() => onTagClick(tag.text)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className={tagClass}>
             <span className="text-sm">{tag.emoji}</span>
             <span>{tag.text}</span>
           </motion.button>
         ))}
-
-        <motion.button
+        <button
           onClick={() => setExpanded(!expanded)}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className={tagClass}
+          className="text-xs font-mono text-muted-foreground hover:text-primary transition-colors px-1"
         >
-          <motion.span
-            animate={{ rotate: expanded ? 180 : 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <ChevronDown className="w-3 h-3" />
-          </motion.span>
-          <span>{expanded ? 'Less' : 'More'}</span>
-        </motion.button>
+          {expanded ? '− less' : '+ more'}
+        </button>
       </div>
 
       <AnimatePresence>
@@ -91,14 +99,8 @@ export function TagQuestions({ onTagClick, isLimitReached }: TagQuestionsProps) 
             transition={{ duration: 0.2 }}
             className="flex flex-wrap gap-2 justify-center overflow-hidden"
           >
-            {tags.slice(5).map((tag, index) => (
-              <motion.button
-                key={index}
-                onClick={() => onTagClick(tag.text)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={tagClass}
-              >
+            {tags.slice(2).map((tag, index) => (
+              <motion.button key={index} onClick={() => onTagClick(tag.text)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className={tagClass}>
                 <span className="text-sm">{tag.emoji}</span>
                 <span>{tag.text}</span>
               </motion.button>
