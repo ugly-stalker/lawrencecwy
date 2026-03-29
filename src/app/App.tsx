@@ -115,20 +115,20 @@ export default function App() {
   };
 
   return (
-    <div className="flex flex-col h-[100dvh] bg-background relative overflow-hidden">
+    <div className="flex flex-col h-[100dvh] bg-background relative overflow-hidden max-w-full">
       {/* Subtle grid background */}
       <div
-        className="absolute inset-0 opacity-[0.04] pointer-events-none"
+        className="absolute inset-0 opacity-[0.06] pointer-events-none"
         style={{
-          backgroundImage: `linear-gradient(rgba(101, 156, 68, 0.6) 1px, transparent 1px),
-                           linear-gradient(90deg, rgba(101, 156, 68, 0.6) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(101, 156, 68, 0.8) 1px, transparent 1px),
+                           linear-gradient(90deg, rgba(101, 156, 68, 0.8) 1px, transparent 1px)`,
           backgroundSize: '60px 60px',
         }}
       />
 
       {/* Noise texture overlay */}
       <div
-        className="absolute inset-0 opacity-[0.02] pointer-events-none mix-blend-overlay"
+        className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-overlay"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
         }}
@@ -136,19 +136,28 @@ export default function App() {
 
       {/* Animated ambient glow effects */}
       <motion.div
-        className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none"
-        animate={{ x: [0, 100, 0], y: [0, 50, 0], scale: [1, 1.2, 1] }}
+        className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full blur-[140px] pointer-events-none"
+        style={{ background: 'rgba(255, 255, 255, 0.03)' }}
+        animate={{ x: [0, 140, -40, 0], y: [0, 80, 30, 0], scale: [1, 1.3, 0.9, 1] }}
+        transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute bottom-0 right-1/4 w-[600px] h-[600px] rounded-full blur-[140px] pointer-events-none"
+        style={{ background: 'rgba(220, 230, 255, 0.025)' }}
+        animate={{ x: [0, -120, 60, 0], y: [0, -100, -30, 0], scale: [1, 1.4, 0.95, 1] }}
         transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
-        className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none"
-        animate={{ x: [0, -80, 0], y: [0, -60, 0], scale: [1, 1.3, 1] }}
-        transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute top-1/2 right-1/3 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none"
+        style={{ background: 'rgba(255, 255, 255, 0.02)' }}
+        animate={{ x: [0, 100, -60, 0], y: [0, -80, 40, 0], scale: [1, 1.2, 0.85, 1] }}
+        transition={{ duration: 13, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
-        className="absolute top-1/2 right-1/3 w-64 h-64 bg-primary/3 rounded-full blur-[100px] pointer-events-none"
-        animate={{ x: [0, 60, 0], y: [0, -40, 0], scale: [1, 1.1, 1] }}
-        transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute top-1/3 left-0 w-[350px] h-[350px] rounded-full blur-[120px] pointer-events-none"
+        style={{ background: 'rgba(200, 220, 255, 0.02)' }}
+        animate={{ x: [0, 80, 20, 0], y: [0, 60, -40, 0], scale: [1, 1.15, 0.9, 1] }}
+        transition={{ duration: 17, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       <AnimatePresence mode="wait">
@@ -161,7 +170,7 @@ export default function App() {
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="max-w-2xl w-full space-y-10 text-center"
+              className="max-w-3xl w-full space-y-10 text-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -264,7 +273,7 @@ export default function App() {
               </div>
 
               <div className="border-t border-border/40 bg-background/60 backdrop-blur-xl">
-                <div className="max-w-3xl mx-auto px-4 sm:px-6 py-4 space-y-4">
+                <div className="max-w-3xl mx-auto px-3 sm:px-6 py-2 sm:py-4 space-y-2 sm:space-y-4">
                   <ChatInput
                     onSendMessage={handleSendMessage}
                     disabled={isTyping}

@@ -35,12 +35,12 @@ export function ChatBubble({ message, type, isFirstAI }: ChatBubbleProps) {
           {isAI ? (
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
-              className="prose prose-invert prose-sm max-w-none text-foreground leading-relaxed"
+              className="prose prose-invert max-w-none text-foreground leading-relaxed text-xs sm:text-sm [&>p]:mb-3 [&>p:last-child]:mb-0"
             >
               {message}
             </ReactMarkdown>
           ) : (
-            <p className="text-sm sm:text-base whitespace-pre-wrap leading-relaxed">
+            <p className="text-xs sm:text-base whitespace-pre-wrap leading-relaxed">
               {message}
             </p>
           )}

@@ -48,27 +48,17 @@ export function TagQuestions({ onTagClick, isLimitReached, collapsible = false }
     );
   }
 
-  const tagClass = "px-3 py-1.5 bg-primary/5 backdrop-blur-sm border border-primary/40 text-primary rounded-full text-xs font-mono hover:bg-primary/15 transition-colors flex items-center gap-1.5 shadow-md shadow-primary/5";
+  const tagClass = "px-2 py-0.5 bg-primary/5 backdrop-blur-sm border border-primary/40 text-primary rounded-full text-[11px] font-mono hover:bg-primary/15 transition-colors flex items-center gap-1 shadow-md shadow-primary/5";
 
   if (!collapsible) {
     return (
-      <div className="space-y-2">
-        <div className="flex flex-wrap gap-2 justify-center">
-          {tags.slice(0, 5).map((tag, index) => (
-            <motion.button key={index} onClick={() => onTagClick(tag.text)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className={tagClass}>
-              <span className="text-sm">{tag.emoji}</span>
-              <span>{tag.text}</span>
-            </motion.button>
-          ))}
-        </div>
-        <div className="flex flex-wrap gap-2 justify-center">
-          {tags.slice(5).map((tag, index) => (
-            <motion.button key={index} onClick={() => onTagClick(tag.text)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className={tagClass}>
-              <span className="text-sm">{tag.emoji}</span>
-              <span>{tag.text}</span>
-            </motion.button>
-          ))}
-        </div>
+      <div className="flex flex-wrap gap-1.5 justify-center">
+        {tags.map((tag, index) => (
+          <motion.button key={index} onClick={() => onTagClick(tag.text)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className={tagClass}>
+            <span className="text-sm">{tag.emoji}</span>
+            <span>{tag.text}</span>
+          </motion.button>
+        ))}
       </div>
     );
   }
@@ -76,8 +66,14 @@ export function TagQuestions({ onTagClick, isLimitReached, collapsible = false }
   return (
     <div className="space-y-2">
       <div className="flex flex-wrap gap-2 justify-center">
+        {tags.slice(0, 1).map((tag, index) => (
+          <motion.button key={index} onClick={() => onTagClick(tag.text)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className={`${tagClass} sm:hidden`}>
+            <span className="text-sm">{tag.emoji}</span>
+            <span>{tag.text}</span>
+          </motion.button>
+        ))}
         {tags.slice(0, 2).map((tag, index) => (
-          <motion.button key={index} onClick={() => onTagClick(tag.text)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className={tagClass}>
+          <motion.button key={`sm-${index}`} onClick={() => onTagClick(tag.text)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className={`${tagClass} hidden sm:flex`}>
             <span className="text-sm">{tag.emoji}</span>
             <span>{tag.text}</span>
           </motion.button>

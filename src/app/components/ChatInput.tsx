@@ -63,7 +63,7 @@ export function ChatInput({ onSendMessage, disabled, isLimitReached, showPreChat
       />
 
       <motion.div
-        className="relative bg-input-background/60 backdrop-blur-xl border-2 rounded-3xl p-4 space-y-3 transition-all duration-300"
+        className="relative bg-input-background/60 backdrop-blur-xl border-2 rounded-3xl p-3 sm:p-4 space-y-2 sm:space-y-3 transition-all duration-300"
         animate={{
           borderColor: isFocused ? 'rgba(101, 156, 68, 0.7)' : 'rgba(101, 156, 68, 0.35)',
           boxShadow: isFocused
@@ -109,7 +109,7 @@ export function ChatInput({ onSendMessage, disabled, isLimitReached, showPreChat
             disabled={disabled || isLimitReached}
             rows={1}
             aria-label="Message"
-            className="flex-1 bg-transparent px-2 py-2.5 text-base focus:outline-none resize-none max-h-[72px] overflow-y-auto disabled:opacity-50 disabled:cursor-not-allowed placeholder:text-muted-foreground/50"
+            className="flex-1 bg-transparent px-2 py-1.5 sm:py-2.5 text-sm sm:text-base focus:outline-none resize-none max-h-[72px] overflow-y-auto disabled:opacity-50 disabled:cursor-not-allowed placeholder:text-muted-foreground/50"
           />
           <motion.button
             type="submit"
