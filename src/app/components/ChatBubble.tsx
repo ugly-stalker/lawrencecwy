@@ -30,6 +30,7 @@ export function ChatBubble({ message, type, isFirstAI }: ChatBubbleProps) {
               ? 'bg-card border border-border/50 shadow-primary/5 rounded-tl-sm'
               : 'bg-primary/20 border border-primary/30 shadow-primary/10 rounded-tr-sm'
           }`}
+          style={{ fontFamily: 'Arial, sans-serif' }}
         >
           {isAI ? (
             <ReactMarkdown
