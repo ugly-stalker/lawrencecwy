@@ -197,6 +197,7 @@ export default function App() {
                   onPreChatSubmit={handlePreChatSubmit}
                 />
                 <TagQuestions onTagClick={handleTagClick} isLimitReached={isLimitReached} />
+                <p className="text-xs text-muted-foreground/50 text-center font-mono">AI can make mistakes — so don't take everything too seriously lol</p>
               </div>
             </motion.div>
 
@@ -272,6 +273,7 @@ export default function App() {
                     onPreChatSubmit={handlePreChatSubmit}
                   />
                   <TagQuestions onTagClick={handleTagClick} isLimitReached={isLimitReached} collapsible />
+                  <p className="text-xs text-muted-foreground/50 text-center font-mono">AI can make mistakes — so don't take everything too seriously lol</p>
                 </div>
               </div>
             </main>
